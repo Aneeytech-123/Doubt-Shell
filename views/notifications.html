@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notifications — DoubtBridge</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/"><span class="brand-mark"><i data-lucide="message-circle-question-mark"></i></span>DoubtBridge</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <i data-lucide="menu"></i><span class="sr-only">Menu</span>
+      </button>
+      <nav id="nav-links" class="nav-links" aria-label="Main"></nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <div class="page-head">
+      <div>
+        <h1>Notifications</h1>
+        <p id="notif-summary">Replies and updates on your doubts.</p>
+      </div>
+      <button class="btn btn-secondary" type="button" id="read-all-btn"><i data-lucide="check-check"></i> Mark all as read</button>
+    </div>
+
+    <div id="notif-alert" class="hidden"></div>
+    <div class="card">
+      <ul class="notif-list" id="notif-list" aria-live="polite">
+        <li class="empty">Loading…</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span><strong>DoubtBridge</strong> · Ask. Answer. Understand. · © <span id="year"></span></span>
+      <nav aria-label="Footer">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/notifications">Notifications</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/vendor/lucide.min.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/notifications.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard — DoubtBridge</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/"><span class="brand-mark"><i data-lucide="message-circle-question-mark"></i></span>DoubtBridge</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <i data-lucide="menu"></i><span class="sr-only">Menu</span>
+      </button>
+      <nav id="nav-links" class="nav-links" aria-label="Main"></nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <div class="page-head">
+      <div>
+        <h1 id="welcome">Your subjects</h1>
+        <p>Choose a subject to open its doubt room.</p>
+        <div class="profile-strip" id="profile-strip"></div>
+      </div>
+    </div>
+
+    <div class="stat-row" aria-label="Summary">
+      <div class="card stat">
+        <div class="stat-icon"><i data-lucide="book-open"></i></div>
+        <div><div class="stat-value" id="stat-joined">–</div><div class="stat-label">Rooms you joined</div></div>
+      </div>
+      <div class="card stat">
+        <div class="stat-icon"><i data-lucide="circle-help"></i></div>
+        <div><div class="stat-value" id="stat-unanswered">–</div><div class="stat-label">Unanswered doubts</div></div>
+      </div>
+      <a class="card stat" href="/notifications">
+        <div class="stat-icon"><i data-lucide="bell"></i></div>
+        <div><div class="stat-value" id="stat-unread">–</div><div class="stat-label">Unread notifications</div></div>
+      </a>
+    </div>
+
+    <h2 class="sr-only">Subjects</h2>
+    <div id="subject-alert" class="hidden"></div>
+    <div class="subject-grid" id="subject-grid" aria-live="polite">
+      <p class="muted">Loading subjects…</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span><strong>DoubtBridge</strong> · Ask. Answer. Understand. · © <span id="year"></span></span>
+      <nav aria-label="Footer">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/notifications">Notifications</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/vendor/lucide.min.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

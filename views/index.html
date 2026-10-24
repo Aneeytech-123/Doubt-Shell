@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DoubtBridge — Ask. Answer. Understand.</title>
+  <meta name="description" content="DoubtBridge is a subject-wise doubt solving portal where students and professors ask, answer and discuss academic questions.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/"><span class="brand-mark"><i data-lucide="message-circle-question-mark"></i></span>DoubtBridge</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <i data-lucide="menu"></i><span class="sr-only">Menu</span>
+      </button>
+      <nav id="nav-links" class="nav-links" aria-label="Main"></nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow"><i data-lucide="sparkles"></i> Subject-wise doubt solving</span>
+          <h1>DoubtBridge</h1>
+          <p class="tagline">Ask. Answer. Understand.</p>
+          <p class="lead">
+            A shared space for every subject. Students post the doubts they are stuck on, classmates and
+            professors reply, and every solved question stays available for the whole class to learn from.
+          </p>
+          <div id="login-required" class="hidden"></div>
+          <div id="logged-in-box" class="hidden">
+            <a class="btn btn-primary btn-lg" href="/dashboard"><i data-lucide="layout-dashboard"></i> Go to your dashboard</a>
+          </div>
+        </div>
+
+        <div class="role-cards" id="role-cards" aria-label="Choose how you want to log in">
+          <article class="role-card is-student">
+            <div class="role-icon"><i data-lucide="graduation-cap"></i></div>
+            <div>
+              <h2>Student</h2>
+              <p>Ask doubts in your subject rooms, answer classmates and track replies to your questions.</p>
+              <div class="role-actions">
+                <a class="btn btn-primary" href="/login?role=student"><i data-lucide="log-in"></i> Student Login</a>
+                <a href="/register/student">New student? Register</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="role-card is-professor">
+            <div class="role-icon"><i data-lucide="presentation"></i></div>
+            <div>
+              <h2>Professor</h2>
+              <p>Respond to student doubts, guide discussions and mark questions as resolved.</p>
+              <div class="role-actions">
+                <a class="btn btn-primary" href="/login?role=professor"><i data-lucide="log-in"></i> Professor Login</a>
+                <a href="/register/professor">New professor? Register</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Everything a class discussion needs</h2>
+          <p>Simple tools that keep questions organised by subject.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="card feature">
+            <div class="feature-icon"><i data-lucide="book-open"></i></div>
+            <h3>Subject rooms</h3>
+            <p>DAA, CN and WT each have their own room, so a networking doubt never gets lost among algorithm questions.</p>
+          </div>
+          <div class="card feature">
+            <div class="feature-icon"><i data-lucide="users"></i></div>
+            <h3>Students and professors together</h3>
+            <p>See who has joined each room. Professor replies are clearly highlighted in every discussion.</p>
+          </div>
+          <div class="card feature">
+            <div class="feature-icon"><i data-lucide="bell-ring"></i></div>
+            <h3>Instant notifications</h3>
+            <p>Get notified in the app (and optionally by email) as soon as someone answers your doubt.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title"><h2>How it works</h2></div>
+        <div class="steps">
+          <div class="card step"><h3>Join a subject</h3><p>Log in, open a subject card and join its doubt room.</p></div>
+          <div class="card step"><h3>Ask or answer</h3><p>Post a doubt with a clear title, or help others by answering theirs.</p></div>
+          <div class="card step"><h3>Mark it resolved</h3><p>When a doubt is cleared, mark it resolved. It stays searchable for everyone.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span><strong>DoubtBridge</strong> · Ask. Answer. Understand. · © <span id="year"></span></span>
+      <nav aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/login?role=student">Student Login</a>
+        <a href="/login?role=professor">Professor Login</a>
+        <a href="/register/student">Register</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/vendor/lucide.min.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/landing.js"></script>
+</body>
+</html>

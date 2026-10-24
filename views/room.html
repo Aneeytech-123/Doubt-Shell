@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Doubt Room — DoubtBridge</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/"><span class="brand-mark"><i data-lucide="message-circle-question-mark"></i></span>DoubtBridge</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <i data-lucide="menu"></i><span class="sr-only">Menu</span>
+      </button>
+      <nav id="nav-links" class="nav-links" aria-label="Main"></nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <!-- Room header -->
+    <section class="room-head">
+      <div class="breadcrumb"><a href="/dashboard">Dashboard</a> <i data-lucide="chevron-right"></i> <span id="crumb-code">Subject</span></div>
+      <div class="room-title-row">
+        <div class="room-title">
+          <div class="subject-code" id="room-code" aria-hidden="true"></div>
+          <div>
+            <h1 id="room-name">Loading…</h1>
+            <p id="room-desc"></p>
+          </div>
+        </div>
+        <div class="room-actions">
+          <button class="btn btn-secondary" type="button" id="join-btn" disabled>Join room</button>
+          <button class="btn btn-primary" type="button" id="ask-btn" disabled><i data-lucide="plus"></i> Ask a Doubt</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="join-banner" class="alert alert-info join-banner hidden" role="note">
+      <span><strong>You are viewing this room.</strong> Join it to ask doubts and post answers.</span>
+      <button class="btn btn-primary btn-sm" type="button" id="banner-join-btn"><i data-lucide="door-open"></i> Join room</button>
+    </div>
+    <div id="room-alert" class="hidden"></div>
+
+    <!-- Tabs: only visible on tablet / mobile screens -->
+    <div class="room-tabs" role="tablist" aria-label="Room sections">
+      <button type="button" role="tab" id="tab-participants" aria-controls="panel-participants" aria-selected="false">
+        <i data-lucide="users"></i><span class="tab-label-long">Participants</span><span class="tab-label-short">People</span> <span class="panel-count" id="tab-count-participants">0</span>
+      </button>
+      <button type="button" role="tab" id="tab-unresolved" aria-controls="panel-unresolved" aria-selected="true">
+        <i data-lucide="circle-help"></i><span class="tab-label-long">Unanswered</span><span class="tab-label-short">Open</span> <span class="panel-count" id="tab-count-unresolved">0</span>
+      </button>
+      <button type="button" role="tab" id="tab-all" aria-controls="panel-all" aria-selected="false">
+        <i data-lucide="list-filter"></i><span class="tab-label-long">All doubts</span><span class="tab-label-short">All</span> <span class="panel-count" id="tab-count-all">0</span>
+      </button>
+    </div>
+
+    <!-- Three columns: participants | unanswered doubts | all doubts -->
+    <div class="room-grid">
+      <!-- LEFT -->
+      <section class="card panel" id="panel-participants" role="tabpanel" aria-labelledby="participants-title">
+        <div class="panel-head">
+          <h2 id="participants-title"><i data-lucide="users"></i> Participants</h2>
+          <span class="panel-count" id="participant-count" aria-label="Total participants">0</span>
+        </div>
+        <div class="panel-body" id="participants-body"></div>
+      </section>
+
+      <!-- MIDDLE -->
+      <section class="card panel is-active" id="panel-unresolved" role="tabpanel" aria-labelledby="unresolved-title">
+        <div class="panel-head">
+          <div>
+            <h2 id="unresolved-title"><i data-lucide="circle-help"></i> Unanswered Doubts</h2>
+            <span class="small muted">Open questions that are not resolved yet</span>
+          </div>
+          <span class="panel-count" id="unresolved-count">0</span>
+        </div>
+        <div class="panel-body" id="unresolved-body" aria-live="polite"></div>
+      </section>
+
+      <!-- RIGHT -->
+      <section class="card panel" id="panel-all" role="tabpanel" aria-labelledby="all-title">
+        <div class="panel-head">
+          <h2 id="all-title"><i data-lucide="message-square"></i> All Doubts</h2>
+          <span class="panel-count" id="all-count">0</span>
+        </div>
+        <div class="panel-tools">
+          <label class="sr-only" for="search">Search doubts</label>
+          <div class="search-box">
+            <i data-lucide="search"></i>
+            <input type="search" id="search" placeholder="Search by keyword…" maxlength="100" autocomplete="off">
+          </div>
+          <div class="filter-chips" role="group" aria-label="Filter by status">
+            <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="chip" data-filter="unanswered" aria-pressed="false">Unanswered</button>
+            <button type="button" class="chip" data-filter="answered" aria-pressed="false">Answered</button>
+            <button type="button" class="chip" data-filter="resolved" aria-pressed="false">Resolved</button>
+          </div>
+        </div>
+        <div class="panel-body" id="all-body" aria-live="polite"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Ask a Doubt dialog -->
+  <dialog id="ask-dialog" aria-labelledby="ask-title">
+    <form id="ask-form" class="dialog-inner" novalidate>
+      <div class="dialog-head">
+        <div>
+          <h2 id="ask-title">Ask a Doubt</h2>
+          <span class="small muted">Posting in <strong id="ask-subject"></strong> as <strong id="ask-author"></strong></span>
+        </div>
+        <button type="button" class="icon-btn" data-close aria-label="Close"><i data-lucide="x"></i></button>
+      </div>
+      <div class="dialog-body">
+        <div id="ask-alert" class="hidden"></div>
+        <div class="field">
+          <label for="ask-title-input">Question title</label>
+          <input type="text" id="ask-title-input" name="title" required minlength="8" maxlength="150" placeholder="e.g. How does Dijkstra's algorithm handle ties?">
+          <p class="hint">8–150 characters. Make it specific.</p>
+        </div>
+        <div class="field">
+          <label for="ask-desc-input">Question description</label>
+          <textarea id="ask-desc-input" name="description" required minlength="15" maxlength="5000" rows="6" placeholder="Explain what you tried and where you are stuck…"></textarea>
+          <p class="hint">At least 15 characters.</p>
+        </div>
+      </div>
+      <div class="dialog-foot">
+        <button type="button" class="btn btn-ghost" data-close>Cancel</button>
+        <button type="submit" class="btn btn-primary" id="ask-submit"><i data-lucide="send"></i> Post doubt</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Discussion dialog -->
+  <dialog id="discussion-dialog" aria-labelledby="discussion-heading">
+    <div class="dialog-inner">
+      <div class="dialog-head">
+        <div>
+          <h2 id="discussion-heading">Discussion</h2>
+          <div id="discussion-status"></div>
+        </div>
+        <button type="button" class="icon-btn" data-close aria-label="Close"><i data-lucide="x"></i></button>
+      </div>
+      <div class="dialog-body" id="discussion-body"></div>
+      <div class="dialog-foot" id="discussion-foot"></div>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span><strong>DoubtBridge</strong> · Ask. Answer. Understand. · © <span id="year"></span></span>
+      <nav aria-label="Footer">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/notifications">Notifications</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/vendor/lucide.min.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/room.js"></script>
+</body>
+</html>
