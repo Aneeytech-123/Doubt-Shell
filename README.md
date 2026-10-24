@@ -77,7 +77,7 @@ It is built with plain **HTML5, CSS3 and vanilla JavaScript** on the frontend an
 | Behaviour | Vanilla JavaScript | DOM manipulation and `fetch()` calls to the API |
 | Icons | Lucide (served locally from `node_modules`) | Open-source SVG icons |
 | Server | Node.js + Express 5 | Routing, middleware, JSON API |
-| Database | SQLite via `better-sqlite3` | Single-file relational database, no separate server needed |
+| Database | SQLite via Node's built-in `node:sqlite` | Single-file relational database, no separate server and nothing to compile |
 | Authentication | `express-session` + `bcryptjs` | Session cookies and bcrypt password hashing |
 | Security | `helmet`, `express-rate-limit`, custom CSRF middleware | Security headers, brute-force protection, CSRF tokens |
 | Email | Nodemailer | Optional notification emails over SMTP |
@@ -244,7 +244,7 @@ All endpoints return JSON. Requests other than `GET` must include the `X-CSRF-To
 
 ## Installation
 
-**Requirements:** [Node.js 22 LTS or newer](https://nodejs.org/) and Git.
+**Requirements:** [Node.js 22.13 or newer](https://nodejs.org/) (Node 24 LTS recommended) and Git. No Visual Studio or build tools are needed.
 
 ```bash
 git clone https://github.com/Aneeytech-123/doubt-shell.git

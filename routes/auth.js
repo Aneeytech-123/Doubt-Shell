@@ -14,6 +14,7 @@ const { publicUser } = require('../middleware/auth');
 const { ensureCsrfToken } = require('../middleware/csrf');
 const { HttpError } = require('../middleware/errors');
 const { clean, validateRegistration, hasErrors } = require('../utils/validate');
+const { isUniqueViolation } = require('../database/db');
 
 // Used so a login for an unknown email takes as long as one for a real email
 // (prevents attackers from discovering which emails are registered).
@@ -91,7 +92,7 @@ function createAuthRouter() {
         ).lastInsertRowid;
     } catch (err) {
       // Two requests with the same email at the same moment
-      if (err.code === 'SQLITE_CONSTRAINT_UNIQUE') {
+      if (isUniqueViolation(err)) {
         throw new HttpError(409, 'An account with this email already exists.', {
           email: 'This email is already registered.',
         });
